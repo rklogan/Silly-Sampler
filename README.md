@@ -68,18 +68,37 @@ python3 Silly_Sequencer.py
 ```
 depending on your alias configuration.  
   
-This will run Silly Sequencer with it's default parameters. It may take a few minutes for Silly Sequencer to complete it's execution, but will provide updates on the terminal as it progresses.
-
-By default, Silly Sequencer will process the file 'score.mid' in the working directory and will choose samples from the ./Samples directory. For each track in the MIDI file, it will output an audio file in the ./Output by default. For every 'Note On' event on the track, a random sample will be chosen and pitched to the note specified in the 'Note On' event. These pitched samples will then be sequenced in the audio file according to the timing data in the MIDI file.
-
-
-
-
+This will run Silly Sequencer with it's default parameters. It may take a minute for Silly Sequencer to complete it's execution, but will provide updates on the terminal as it progresses. Upon completion an audio file will be created for each track that was used in the MIDI example. In this case, it will generate three audio files that, when played together, will play the first 45 seconds of Queen's Bohemian Rhapsody.
 
 ### General Usage
 
+```bash
+python Silly_Sequencer.py [sample_directory] [score] [output_directory] [gain] [verbose]
+```
+* **sample_directory**: The relative path to the directory containing the samples. To recreate the example, a value of 'Samples' (without quotation marks) could be used.
+* **score**: The relative path to the MIDI file that is to be processed. To recreate the example, a value of 'score.mid' (without quotation marks) could be used.
+* **output_directory**: The relative path to the directory to which the output audio should be written. Should the directory not exist, it will be created. Should it already contain audio files that match the track names of the MIDI file being process they will be **OVERWRITTEN**. To recreate the example, a value of 'Output' (without quotation marks) could be provided.
+* **gain**: This is the gain factor applied to all the samples. By default it is 0.2. Depending on the MIDI file being processed, and the number of samples that are playing simultaneously this may need to be adjusted to avoid clipping.
+* **verbose**: If a value of 'f', 'F', or 'False' is provided in this position, Silly Sequencer will only update the console if an error has occured. That is to say, it will not report it's progress on the terminal.  
 
---- 
+All parameters listed above are positional and must be provided in the order presented above. Should the user wish to use later parameters without using earlier ones a value of 'None' can be passed to indicate to Silly Sequencer that the parameter should be ignored. For example:
+```bash
+python Silly_Sequencer.py None None new_output_directory
+```
+would use the default parameters for sample_directory, score, gain and verbose, but would instead write the output values to new_output_directory.
+
+### General Notes
+* Silly Sequencer produces rather chaotic music. Sample choice greatly effects the musicality of the output. For instance, in the provided example the gunshot sound effects are not noticeably effected by the pitch shifting and result, for the most part, in destroying the melodic structure (however amusing it might be).
+* Silly Sequencer will automatically select the sample rate for the audio files to be the same as the sample rate of the sample whose file name is first lexicographically. As such, all samples should have the same sample rate to avoid erroneous behaviour.
+* Silly Sequencer will work with mono and stereo samples. It has not been tested with samples that have more than two channels.
+* If the Samples directory provided does not exist, the program will fail. Furthermore if the Samples directory is empty the program will also fail. Finally, the samples directory must contain **EXCLUSIVELY** audio files. The presence of any other type of file will cause failure. As per the limitations of the dependency _SoundFile,_ Silly Sequencer fully supports WAV, FLAC and MAT files and has limited support for OGG files. See the [SoundFile documentation](https://pysoundfile.readthedocs.io/en/latest/#read-write-functions) for more details.
+* This version of Silly Sequencer does not acknowledge _Note Off_ events, nor does it respond to _Note On_ events with a velocity of 0 (which both usually indicate that the note should stop playing). When Silly Sequencer recieves a _Note On_ event with non-zero velocity, it will play the entire sample, stopping only if the end point of the song has been reached.
+* There are a few scenarion where writing the audio files can fail:  
+  * The files are already in use by another program. This could arise if the user was trying to overwrite the output of a previous run of Silly Sequencer after having imported them into their DAW.
+  * Silly Sequencer does not have write access to the specified directory.  
+  In both of these cases, Silly Sequencer will try to perform the write every 30 seconds until it is either successful or the user terminates the process with 'ctrl+c'. This allows the user to rectify the situation without having to restart the processing.
+
+---
 
 ## Built With
 
