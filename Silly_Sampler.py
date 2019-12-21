@@ -42,6 +42,7 @@ if __name__ == "__main__":
     for track in score_file.tracks:
             for msg in track:
                 if msg.is_meta:
+                    print(msg)
                     try:
                         tempo = msg.tempo
                         break
@@ -82,6 +83,9 @@ if __name__ == "__main__":
                     #all_samples_names.remove(sample_dict[track[i].note])
                     #used_samples.append(sample_dict[track[i].note])
                     chosen_sample_name = random.choice(all_samples_names)
+                    all_samples_names.remove(chosen_sample_name)
+                    used_samples.append(chosen_sample_name)
+                    print(chosen_sample_name)
 
                     #load the sample
                     sample_data, _ = librosa.load(join(cwd_path, sample_directory, chosen_sample_name))
@@ -95,10 +99,20 @@ if __name__ == "__main__":
                 
                 #write the sample to buffer
                 start_sample = int(md.tick2second(tick, score_file.ticks_per_beat, tempo*fs))
-                for j in range(len(sample_data)):
+                j = 0
+                for j in range(len(sample_dict[track[i].note])):
                     if start_sample+j >= len(output_buffer):
                         break
+                    
                     val = gain * track[i].velocity/127 * sample_dict[track[i].note][j]
+                    """try:
+                        val = gain * track[i].velocity/127 * sample_dict[track[i].note][j]
+                    except:
+                        print(str(i) + '\t' + str(j) + '\t')
+                        print(len(sample_dict[track[i].note]))
+                        print(range(len(sample_dict[track[i].note])))
+                        print(sample_dict[track[i].note])
+                        raise Exception"""
                     
                     """if track.name == 'Main':
                         print('v' + str(track[i].velocity))
