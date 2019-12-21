@@ -28,8 +28,9 @@ def get_MIDI_note(sample_data, fs):
 if __name__ == "__main__":
     sample_directory = 'Samples'
     score_name = 'score.mid'
-    fs = 44100
-    gain = 0.1
+    output_directory = 'Output'
+    fs = 44100                  #TODO get this from file
+    gain = 0.2
 
     if len(sys.argv) > 1:
         if sys.argv[1] != 'None':
@@ -39,14 +40,27 @@ if __name__ == "__main__":
             score_name = sys.argv[2]
     if len(sys.argv) > 3:
         if sys.argv[3] != 'None':
-            gain = float(sys.argv[3])
+            output_directory = sys.argv[3]
     if len(sys.argv) > 4:
-        if sys.argv[4][0] == 'f' or sys.argv[4][0] == 'F':
+        if sys.argv[4] != 'None':
+            gain = float(sys.argv[4])
+    if len(sys.argv) > 5:
+        if sys.argv[5][0] == 'f' or sys.argv[5][0] == 'F':
             VERBOSE = False
 
     cwd_path = os.getcwd()
     samples_path = join(cwd_path, sample_directory)
     score_path = join(cwd_path, score_name)
+    output_path = join(cwd_path, output_directory)
+
+    #check if the source exists
+    if not os.path.exists(samples_path) or os.path.isfile(samples_path) :
+        print('The directory ' + samples_path + ' does not exist.')
+        print('Aborting...')
+        sys.exit(1)
+
+    #check if the destination exists, if not create it
+
 
     score_file = md.MidiFile(score_path, clip=True)
 
@@ -83,7 +97,7 @@ if __name__ == "__main__":
         i = 0
         while i < num_events:
             if VERBOSE and i % 32 == 0 and i != 0:
-                print(str(i) + ' of ' + str(num_events) + 'events processed for track: ' + track.name + '\t\t\t\t' + str(int(100*i/num_events)) + '%')
+                print(str(i) + ' of ' + str(num_events) + ' events processed for track: ' + track.name + '\t\t\t\t' + str(int(100*i/num_events)) + '%')
             tick += track[i].time
 
             if track[i].type == 'note_on':
@@ -121,4 +135,4 @@ if __name__ == "__main__":
             if VERBOSE: 
                 print('Finished processing track: ' + track.name)
                 print('Writing ' + track.name + ' to file')
-            sf.write(join(cwd_path, 'Output', track.name + '.wav'), output_buffer, fs)
+            sf.write(join(output_path, track.name + '.wav'), output_buffer, fs)
