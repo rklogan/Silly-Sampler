@@ -9,6 +9,7 @@ if __name__ == "__main__":
     sample_directory = 'Samples'
     score_name = 'score.mid'
     fs = 44100
+    gain = 0.01
 
     cwd_path = os.getcwd()
     samples_path = join(cwd_path, sample_directory)
@@ -38,7 +39,7 @@ if __name__ == "__main__":
     for track in score_file.tracks:
         print('Processing ' + track.name + '...')
 
-        output_buffer = np.zeros((int(score_file.length * fs),))
+        output_buffer = np.zeros((int(score_file.length * fs),), dtype=np.int16)
         buffer_modified = False
         tick = 0
 
@@ -72,7 +73,7 @@ if __name__ == "__main__":
                 for j in range(len(sample_data)):
                     if start_sample+j >= len(output_buffer):
                         break
-                    val = int((track[i].velocity/127) * sample_data[j])
+                    val = track[i].velocity/127 * sample_data[j]
                     
                     """if track.name == 'Main':
                         print('v' + str(track[i].velocity))
@@ -82,7 +83,7 @@ if __name__ == "__main__":
                     
                     if val != 0:
                         buffer_modified = True
-                    output_buffer[start_sample+j] += val
+                    output_buffer[start_sample+j] += np.int16(gain * val)
             i += 1         
         
         if buffer_modified:
