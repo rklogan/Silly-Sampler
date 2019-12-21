@@ -6,6 +6,7 @@ import random
 import librosa                      #requires install
 import soundfile as sf              #requires install 
 import sys
+import time
 
 VERBOSE = True
 
@@ -144,4 +145,15 @@ if __name__ == "__main__":
             if VERBOSE: 
                 print('Finished processing track: ' + track.name)
                 print('Writing ' + track.name + ' to file')
-            sf.write(join(output_path, track.name + '.wav'), output_buffer, fs)
+            write_successful = False
+            while not write_successful:
+                try:
+                    sf.write(join(output_path, track.name + '.wav'), output_buffer, fs)
+                    write_successful = True
+                    if VERBOSE: print('Write Successful')
+                except:
+                    print('Silly Sequencer cannot access file: ' + output_path)
+                    print('This may be caused because the file is in use, or Silly Sequencer does not have the correct permission to create the file')
+                    print('Silly Sequencer will reattempt to write the file in 30s')
+                    print('ctrl+c to exit')
+                    time.sleep(30)
