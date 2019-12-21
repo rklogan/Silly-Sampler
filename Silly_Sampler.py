@@ -1,9 +1,13 @@
 import os
 from os.path import isfile, join
-import scipy.io.wavfile as waves    #does not handle 24bit audio. 8, 16, 32 only.
-import numpy as np
-import mido as md
+#import scipy.io.wavfile as waves    #requires install; does not handle 24bit audio. 8, 16, 32 only.
+import numpy as np                  #requires install
+import mido as md                   #requires install
 import random
+import librosa                      #requires install
+import soundfile as sf              #requires install 
+
+
 
 if __name__ == "__main__":
     sample_directory = 'Samples'
@@ -39,7 +43,7 @@ if __name__ == "__main__":
     for track in score_file.tracks:
         print('Processing ' + track.name + '...')
 
-        output_buffer = np.zeros((int(score_file.length * fs),), dtype=np.int16)
+        output_buffer = np.zeros((int(score_file.length * fs),))
         buffer_modified = False
         tick = 0
 
@@ -66,8 +70,9 @@ if __name__ == "__main__":
                 
                 #load the sample
                 sample_name = sample_dict[track[i].note]
-                _, sample_data = waves.read(join(cwd_path, sample_directory, sample_name))
-
+                #_, sample_data = waves.read(join(cwd_path, sample_directory, sample_name))
+                sample_data, _ = librosa.load(join(cwd_path, sample_directory, sample_name))
+                
                 #write the sample to buffer
                 start_sample = int(md.tick2second(tick, score_file.ticks_per_beat, tempo*fs))
                 for j in range(len(sample_data)):
@@ -83,13 +88,13 @@ if __name__ == "__main__":
                     
                     if val != 0:
                         buffer_modified = True
-                    output_buffer[start_sample+j] += np.int16(gain * val)
+                    output_buffer[start_sample+j] += gain * val
             i += 1         
         
         if buffer_modified:
             print('Writing ' + track.name + ' to file')
-            waves.write(join(cwd_path, 'output', track.name + '.wav'), fs, output_buffer)
-
+            #waves.write(join(cwd_path, 'output', track.name + '.wav'), fs, output_buffer)
+            sf.write(join(cwd_path, 'Output', track.name + '.wav'), output_buffer, fs)
 
     """
     # wav tutorial
