@@ -118,5 +118,7 @@ if __name__ == "__main__":
         
         #write buffer to file
         if buffer_modified:
-            print('Writing ' + track.name + ' to file')
+            if VERBOSE: 
+                print('Finished processing track: ' + track.name)
+                print('Writing ' + track.name + ' to file')
             sf.write(join(cwd_path, 'Output', track.name + '.wav'), output_buffer, fs)
