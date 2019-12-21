@@ -76,15 +76,15 @@ if __name__ == "__main__":
 
     #extract the tempo from the midi file
     for track in score_file.tracks:
-            for msg in track:
-                if msg.is_meta:
-                    try:
-                        tempo = msg.tempo
-                        break
-                    except:
-                        pass
-            if tempo != 0:
-                break
+        for msg in track:
+            if msg.is_meta:
+                try:
+                    tempo = msg.tempo
+                    break
+                except:
+                    pass
+        if tempo != 0:
+            break
 
     #load the names of the samples
     all_samples_names = [f for f in os.listdir(samples_path) if isfile(join(samples_path, f))]
@@ -94,7 +94,11 @@ if __name__ == "__main__":
     _, fs = librosa.load(join(cwd_path, sample_directory, all_samples_names[0]))
 
     #process each track in the MIDI file
+    name = 0
     for track in score_file.tracks:
+        if track.name == '' or track.name == None:
+            track.name = 'Track ' + str(name)
+            name += 1
         if VERBOSE: print('Processing ' + track.name + '...')
 
         output_buffer = np.zeros((int(score_file.length * fs),))

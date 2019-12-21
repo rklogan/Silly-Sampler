@@ -57,8 +57,22 @@ Once the prerequisites are intalled, no further installation is required.
 
 ## Usage
 
-TODO
+### Provided Example
+To run the provided example simply run:
+```bash
+python Silly_Sequencer.py
+```
+or
+```bash
+python3 Silly_Sequencer.py
+```
+depending on your alias configuration.
 
+
+
+
+
+### General Usage
 
 
 --- 
