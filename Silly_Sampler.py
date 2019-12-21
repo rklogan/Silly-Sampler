@@ -7,7 +7,21 @@ import random
 import librosa                      #requires install
 import soundfile as sf              #requires install 
 
+def get_MIDI_note(sample_data, fs):
+    pitches, magnitudes = librosa.core.piptrack(y=sample_data, sr=fs)
 
+    max_mag = -1.0
+    max_bin = -1
+    max_frame = -1
+
+    for i in range(len(magnitudes)):
+        for j in range(len(magnitudes[i])):
+            if magnitudes[i][j] > max_mag:
+                max_mag = magnitudes[i][j]
+                max_bin = i
+                max_frame = j
+
+    return librosa.hz_to_midi(pitches[max_bin][max_frame])
 
 if __name__ == "__main__":
     sample_directory = 'Samples'
@@ -64,21 +78,27 @@ if __name__ == "__main__":
                         all_samples_names = used_samples.copy()
                         used_samples = []
 
-                    sample_dict[track[i].note] = random.choice(all_samples_names)
-                    all_samples_names.remove(sample_dict[track[i].note])
-                    used_samples.append(sample_dict[track[i].note])
-                
+                    #sample_dict[track[i].note] = random.choice(all_samples_names)
+                    #all_samples_names.remove(sample_dict[track[i].note])
+                    #used_samples.append(sample_dict[track[i].note])
+                    chosen_sample_name = random.choice(all_samples_names)
+
+                    #load the sample
+                    sample_data, _ = librosa.load(join(cwd_path, sample_directory, chosen_sample_name))
+                    MIDI_note = get_MIDI_note(sample_data, fs)
+                    sample_dict[track[i].note] = librosa.effects.pitch_shift(sample_data, fs, track[i].note - MIDI_note)
+
                 #load the sample
-                sample_name = sample_dict[track[i].note]
+                #sample_name = sample_dict[track[i].note]
                 #_, sample_data = waves.read(join(cwd_path, sample_directory, sample_name))
-                sample_data, _ = librosa.load(join(cwd_path, sample_directory, sample_name))
+                #sample_data, _ = librosa.load(join(cwd_path, sample_directory, sample_name))
                 
                 #write the sample to buffer
                 start_sample = int(md.tick2second(tick, score_file.ticks_per_beat, tempo*fs))
                 for j in range(len(sample_data)):
                     if start_sample+j >= len(output_buffer):
                         break
-                    val = track[i].velocity/127 * sample_data[j]
+                    val = gain * track[i].velocity/127 * sample_dict[track[i].note][j]
                     
                     """if track.name == 'Main':
                         print('v' + str(track[i].velocity))
@@ -88,7 +108,7 @@ if __name__ == "__main__":
                     
                     if val != 0:
                         buffer_modified = True
-                    output_buffer[start_sample+j] += gain * val
+                    output_buffer[start_sample+j] += val
             i += 1         
         
         if buffer_modified:
