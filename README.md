@@ -58,7 +58,7 @@ Once the prerequisites are intalled, no further installation is required.
 ## Usage
 
 ### Provided Example
-To run the provided example simply run:
+To run the provided example simply run the following in the top level directory of the repository:
 ```bash
 python Silly_Sequencer.py
 ```
@@ -66,7 +66,11 @@ or
 ```bash
 python3 Silly_Sequencer.py
 ```
-depending on your alias configuration.
+depending on your alias configuration.  
+  
+This will run Silly Sequencer with it's default parameters. It may take a few minutes for Silly Sequencer to complete it's execution, but will provide updates on the terminal as it progresses.
+
+By default, Silly Sequencer will process the file 'score.mid' in the working directory and will choose samples from the ./Samples directory. For each track in the MIDI file, it will output an audio file in the ./Output by default. For every 'Note On' event on the track, a random sample will be chosen and pitched to the note specified in the 'Note On' event. These pitched samples will then be sequenced in the audio file according to the timing data in the MIDI file.
 
 
 

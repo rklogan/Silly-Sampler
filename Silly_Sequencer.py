@@ -30,7 +30,7 @@ if __name__ == "__main__":
     sample_directory = 'Samples'
     score_name = 'score.mid'
     output_directory = 'Output'
-    fs = 22050                  #TODO get this from file
+    fs = 22050                  
     gain = 0.2
 
     if len(sys.argv) > 1:
