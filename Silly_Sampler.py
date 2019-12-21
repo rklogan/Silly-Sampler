@@ -9,7 +9,7 @@ if __name__ == "__main__":
     sample_directory = 'Samples'
     score_name = 'score.mid'
     fs = 44100
-    gain = 0.01
+    gain = 0.1
 
     cwd_path = os.getcwd()
     samples_path = join(cwd_path, sample_directory)
