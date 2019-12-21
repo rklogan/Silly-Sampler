@@ -77,7 +77,9 @@ TODO
 
 ## Authors
 
-TODO
+* **Ryan Logan** - *Development* [Silly Sequencer](https://github.com/rklogan/Silly-Sampler)
+
+---
 
 ## License
 Copyright <2019> <Ryan Logan>
