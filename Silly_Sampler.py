@@ -5,6 +5,7 @@ import mido as md                   #requires install
 import random
 import librosa                      #requires install
 import soundfile as sf              #requires install 
+import sys
 
 VERBOSE = True
 
@@ -29,6 +30,19 @@ if __name__ == "__main__":
     score_name = 'score.mid'
     fs = 44100
     gain = 0.1
+
+    if len(sys.argv) > 1:
+        if sys.argv[1] != 'None':
+            sample_directory = sys.argv[1]
+    if len(sys.argv) > 2:
+        if sys.argv[2] != 'None':
+            score_name = sys.argv[2]
+    if len(sys.argv) > 3:
+        if sys.argv[3] != 'None':
+            gain = float(sys.argv[3])
+    if len(sys.argv) > 4:
+        if sys.argv[4][0] == 'f' or sys.argv[4][0] == 'F':
+            VERBOSE = False
 
     cwd_path = os.getcwd()
     samples_path = join(cwd_path, sample_directory)
@@ -58,7 +72,7 @@ if __name__ == "__main__":
 
     #process each track in the MIDI file
     for track in score_file.tracks:
-        print('Processing ' + track.name + '...')
+        if VERBOSE: print('Processing ' + track.name + '...')
 
         output_buffer = np.zeros((int(score_file.length * fs),))
         buffer_modified = False         #avoids writing empty audio files
