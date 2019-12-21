@@ -57,7 +57,6 @@ if __name__ == "__main__":
     for track in score_file.tracks:
             for msg in track:
                 if msg.is_meta:
-                    print(msg)
                     try:
                         tempo = msg.tempo
                         break
