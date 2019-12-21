@@ -96,6 +96,7 @@ would use the default parameters for sample_directory, score, gain and verbose, 
 * There are a few scenarion where writing the audio files can fail:  
   * The files are already in use by another program. This could arise if the user was trying to overwrite the output of a previous run of Silly Sequencer after having imported them into their DAW.
   * Silly Sequencer does not have write access to the specified directory.  
+  
   In both of these cases, Silly Sequencer will try to perform the write every 30 seconds until it is either successful or the user terminates the process with 'ctrl+c'. This allows the user to rectify the situation without having to restart the processing.
 
 ---
@@ -110,7 +111,9 @@ would use the default parameters for sample_directory, score, gain and verbose, 
 ---
 
 ## Example Samples Source
-The provided test tones were generated using audiocheck.net's ['Sine Tone Generator'](https://www.audiocheck.net/audiofrequencysignalgenerator_sinetone.php).  
+The provided test tones were generated using audiocheck's ['Sine Tone Generator'](https://www.audiocheck.net/audiofrequencysignalgenerator_sinetone.php).  
+The MIDI file used in the example is a cropped version of the file found [here](https://bitmidi.com/queen-bohemian-rhapsody-mid).
+
 Listed below is the source for the samples used in the example:  
 * [Air_Wrench_Short-Lightning_McQue-2139303794.wav](http://soundbible.com/1975-Air-Wrench-Short.html) - **Lightning McQue**
 * [Cow_Moo-Mike_Koenig-42670858.wav](http://soundbible.com/1778-Cow-Moo.html) - **Mike Koenig**
@@ -134,7 +137,7 @@ Listed below is the source for the samples used in the example:
 
 ---
 
-## License
+## MIT License
 Copyright <2019> <Ryan Logan>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
