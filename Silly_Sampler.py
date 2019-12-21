@@ -60,6 +60,12 @@ if __name__ == "__main__":
         sys.exit(1)
 
     #check if the destination exists, if not create it
+    if os.path.isfile(output_path):
+        print('The specified output directory, ' + output_path + ' is already a file.')
+        print('Aborting...')
+        sys.exit(1)
+    elif not os.path.exists(output_path):
+        os.mkdir(output_path)
 
 
     score_file = md.MidiFile(score_path, clip=True)
@@ -82,6 +88,9 @@ if __name__ == "__main__":
     #load the names of the samples
     all_samples_names = [f for f in os.listdir(samples_path) if isfile(join(samples_path, f))]
     used_samples = []
+
+    #update the sample rate
+    
 
     #process each track in the MIDI file
     for track in score_file.tracks:
