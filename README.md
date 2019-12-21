@@ -65,7 +65,10 @@ TODO
 
 ## Built With
 
-TODO
+* [LibROSA](https://librosa.github.io/librosa/) - Used for audio analysis
+* [Mido](https://mido.readthedocs.io/en/latest/) - Used to parse MIDI
+* [NumPy](https://numpy.org/) - Required for other dependencies
+* [SoundFile](https://pysoundfile.readthedocs.io/en/latest/) - Used for writing audio files
 
 ---
 
