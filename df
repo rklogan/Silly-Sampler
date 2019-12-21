@@ -1,0 +1,29 @@
+[33mcommit 16d0c2359298fee7365126d1f37a68dacad63b7b[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m
+Author: rklogan <ryan.k.logan@gmail.com>
+Date:   Sat Dec 21 10:22:15 2019 -0500
+
+    added functionality to sequence MIDI events to an audio file
+
+[33mcommit 9bf3a77786c8009d9788266f238baba25e01afa1[m
+Author: rklogan <ryan.k.logan@gmail.com>
+Date:   Fri Dec 20 13:30:53 2019 -0500
+
+    added tempo extraction
+
+[33mcommit bb4203b6e1bd0f38f041baf33f0e5a82ed3d8c55[m
+Author: rklogan <ryan.k.logan@gmail.com>
+Date:   Fri Dec 20 10:05:38 2019 -0500
+
+    added logic for loading samples
+
+[33mcommit 0c6b3a76c2ff326ca8854c2f657f8e3bd7430ef8[m
+Author: rklogan <ryan.k.logan@gmail.com>
+Date:   Fri Dec 20 09:41:01 2019 -0500
+
+    Added gitignore
+
+[33mcommit 05313749617cd98731e40ad9749dc395f4626c0f[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: rklogan <47003638+rklogan@users.noreply.github.com>
+Date:   Fri Dec 20 09:29:47 2019 -0500
+
+    Initial commit
