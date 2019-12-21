@@ -29,7 +29,7 @@ if __name__ == "__main__":
     sample_directory = 'Samples'
     score_name = 'score.mid'
     output_directory = 'Output'
-    fs = 44100                  #TODO get this from file
+    fs = 22050                  #TODO get this from file
     gain = 0.2
 
     if len(sys.argv) > 1:
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     used_samples = []
 
     #update the sample rate
-    
+    _, fs = librosa.load(join(cwd_path, sample_directory, all_samples_names[0]))
 
     #process each track in the MIDI file
     for track in score_file.tracks:
