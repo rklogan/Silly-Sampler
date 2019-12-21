@@ -83,7 +83,7 @@ if __name__ == "__main__":
         i = 0
         while i < num_events:
             if VERBOSE and i % 32 == 0 and i != 0:
-                print(str(i) + ' of ' + str(num_events) + ' processed for track: ' + track.name + '\t\t\t\t' + str(int(100*i/num_events)) + '%')
+                print(str(i) + ' of ' + str(num_events) + 'events processed for track: ' + track.name + '\t\t\t\t' + str(int(100*i/num_events)) + '%')
             tick += track[i].time
 
             if track[i].type == 'note_on':
