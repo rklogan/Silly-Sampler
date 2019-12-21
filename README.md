@@ -70,8 +70,21 @@ TODO
 ---
 
 ## Example Samples Source
-
-TODO
+The provided test tones were generated using audiocheck.net's ['Sine Tone Generator'](https://www.audiocheck.net/audiofrequencysignalgenerator_sinetone.php).  
+Listed below is the source for the samples used in the example:  
+* [Air_Wrench_Short-Lightning_McQue-2139303794.wav](http://soundbible.com/1975-Air-Wrench-Short.html) - **Lightning McQue**
+* [Cow_Moo-Mike_Koenig-42670858.wav](http://soundbible.com/1778-Cow-Moo.html) - **Mike Koenig**
+* [fire_bow_sound-mike-koenig.wav](http://soundbible.com/2108-Shoot-Arrow.html) - **Mike Koenig**
+* [Guillotine-SoundBible.com-1694495814.wav](http://soundbible.com/1532-Guillotine.html) - **Mike Koenig**
+* [Kid_Laugh-Mike_Koenig-1673908713.wav](http://soundbible.com/2026-Kid-Laugh.html) - **Mike Koenig**
+* [M16 Short Burst-SoundBible.com-1461274012](http://soundbible.com/1374-M16-Short-Burst.html) - **snottyboi**
+* [male_cough-Mike_Koenig-144979711.wav](http://soundbible.com/1864-Male-Cough.html) - **Mike Koenig**
+* [MP5_SMG-GunGuru-703432894.wav](http://soundbible.com/2091-MP5-SMG-9mm.html) - **GunGuru**
+* [neck_snap-Vladimir-719669812.wav](http://soundbible.com/1953-Neck-Snap.html) - **Vladimir**
+* [Pew_Pew-DKnight556-1379997159.wav](http://soundbible.com/1949-Pew-Pew.html) - **DKnight556**
+* [Short-Dial-Tone-SoundBible.com-1911037576.wav](http://soundbible.com/1118-Short-Dial-Tone.html) - **Mike Koenig**
+* [short_male_burp-Mike_Koenig-832127430.wav](http://soundbible.com/1867-Short-Male-Burp.html) - **Mike Koenig**
+* [Train_Honk_Horn_Clear-Mike_Koenig-1632487478.wav](http://soundbible.com/1696-Train-Honk-Horn-Clear.html) - **Mike Koenig**
 
 ---
 
