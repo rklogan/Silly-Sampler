@@ -1,12 +1,8 @@
 # Silly-Sequencer
 Silly Sequencer assigns a random sample to each note of each channel of a MIDI file and outputs the resulting audio file. The samples are pitch shifted to the note specified in the MIDI file. Silly Sequencer is written in Python and is cross-platform.
 
----
-
 ## Why do this?
 Because we can. (And it's amusing)
-
----
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
@@ -52,8 +48,6 @@ You can consult the [SoundFile documentation](https://pysoundfile.readthedocs.io
 
 ### Installing
 Once the prerequisites are intalled, no further installation is required.
-
----
 
 ## Usage
 
@@ -105,7 +99,6 @@ would use the default parameters for sample_directory, score, gain and verbose, 
   3. The track names in the MIDI file are not valid filenames for the OS.
 
   In the first two cases the user will be prompted to rectify the problem and then press enter to resume execution. In the third case the user will be prompted to enter a new filename for the track.
----
 
 ## Built With
 
@@ -113,8 +106,6 @@ would use the default parameters for sample_directory, score, gain and verbose, 
 * [Mido](https://mido.readthedocs.io/en/latest/) - Used to parse MIDI
 * [NumPy](https://numpy.org/) - Required for other dependencies
 * [SoundFile](https://pysoundfile.readthedocs.io/en/latest/) - Used for writing audio files
-
----
 
 ## Example Samples Source
 The provided test tones were generated using audiocheck's ['Sine Tone Generator'](https://www.audiocheck.net/audiofrequencysignalgenerator_sinetone.php).  
@@ -135,13 +126,9 @@ Listed below is the source for the samples used in the example:
 * [short_male_burp-Mike_Koenig-832127430.wav](http://soundbible.com/1867-Short-Male-Burp.html) - **Mike Koenig**
 * [Train_Honk_Horn_Clear-Mike_Koenig-1632487478.wav](http://soundbible.com/1696-Train-Honk-Horn-Clear.html) - **Mike Koenig**
 
----
-
 ## Authors
 
 * **Ryan Logan** - *Development* [Silly Sequencer](https://github.com/rklogan/Silly-Sequencer)
-
----
 
 ## MIT License
 Copyright <2019> <Ryan Logan>
