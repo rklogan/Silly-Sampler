@@ -73,13 +73,14 @@ This will run Silly Sequencer with it's default parameters. It may take a minute
 ### General Usage
 
 ```bash
-python Silly_Sequencer.py [sample_directory] [score] [output_directory] [gain] [verbose]
+python Silly_Sequencer.py [sample_directory] [score] [output_directory] [gain] [verbose] [ignore_channel_ten]
 ```
 * **sample_directory**: The relative path to the directory containing the samples. To recreate the example, a value of 'Samples' (without quotation marks) could be used.
 * **score**: The relative path to the MIDI file that is to be processed. To recreate the example, a value of 'score.mid' (without quotation marks) could be used.
 * **output_directory**: The relative path to the directory to which the output audio should be written. Should the directory not exist, it will be created. Should it already contain audio files that match the track names of the MIDI file being process they will be **OVERWRITTEN**. To recreate the example, a value of 'Output' (without quotation marks) could be provided.
 * **gain**: This is the gain factor applied to all the samples. By default it is 0.2. Depending on the MIDI file being processed, and the number of samples that are playing simultaneously this may need to be adjusted to avoid clipping.
-* **verbose**: If a value of 'f', 'F', or 'False' is provided in this position, Silly Sequencer will only update the console if an error has occured. That is to say, it will not report it's progress on the terminal.  
+* **verbose**: If a value of 'f', 'F', or 'False' is provided in this position, Silly Sequencer will only update the console if an error has occured. That is to say, it will not report it's progress on the terminal.
+* **ignore_channel_ten**: If a value of 't', 'T', or True is provided in this position, Silly Sequencer will ignore all instructions on MIDI channel ten. This is useful when the convention of exclusively using channel ten for percussion has been followed. If any other parameter or no parameter is provided Silly Sequencer will process MIDI channel ten normally.
 
 All parameters listed above are positional and must be provided in the order presented above. Should the user wish to use later parameters without using earlier ones a value of 'None' can be passed to indicate to Silly Sequencer that the parameter should be ignored. For example:
 ```bash
