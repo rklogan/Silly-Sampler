@@ -133,7 +133,7 @@ Listed below is the source for the samples used in the example:
 
 ## Authors
 
-* **Ryan Logan** - *Development* [Silly Sequencer](https://github.com/rklogan/Silly-Sampler)
+* **Ryan Logan** - *Development* [Silly Sequencer](https://github.com/rklogan/Silly-Sequencer)
 
 ---
 
