@@ -176,7 +176,10 @@ if __name__ == "__main__":
                     if VERBOSE: print('Write Successful')
                 except:
                     print('Silly Sequencer cannot access file: ' + output_path)
-                    print('This may be caused because the file is in use, or Silly Sequencer does not have the correct permission to create the file')
-                    print('Silly Sequencer will reattempt to write the file in 30s')
-                    print('ctrl+c to exit')
-                    time.sleep(30)
+                    print('This may be caused because the file is in use, Silly Sequencer does not have the correct permission to create the file or because the track\'s name in not a valid filename.')
+                    print('If the issue was caused by a permission or use problem, press enter once the problem has been resolved to resume execution.')
+                    print('If the tracks\'s name is not a valid filename, please enter a new name below and then press enter.')
+                    print('Press ctrl+c to abort execution.')
+                    ip = input()
+                    if ip != '':
+                        track.name = ip 
