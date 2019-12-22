@@ -139,7 +139,7 @@ if __name__ == "__main__":
 
             if ignore_channel_ten:
                 if 'channel' in track[i].dict():
-                    if track[i].dict()['channel'] == 10:
+                    if track[i].dict()['channel'] == 9:
                         i+= 1
                         continue
 
