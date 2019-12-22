@@ -4,7 +4,7 @@ Silly Sequencer assigns a random sample to each note of each channel of a MIDI f
 ---
 
 ## Why do this?
-Because we can. (And for fun)
+Because we can. (And it's amusing)
 
 ---
 
@@ -80,7 +80,12 @@ python Silly_Sequencer.py [sample_directory] [score] [output_directory] [gain] [
 * **output_directory**: The relative path to the directory to which the output audio should be written. Should the directory not exist, it will be created. Should it already contain audio files that match the track names of the MIDI file being process they will be **OVERWRITTEN**. To recreate the example, a value of 'Output' (without quotation marks) could be provided.
 * **gain**: This is the gain factor applied to all the samples. By default it is 0.2. Depending on the MIDI file being processed, and the number of samples that are playing simultaneously this may need to be adjusted to avoid clipping.
 * **verbose**: If a value of 'f', 'F', or 'False' is provided in this position, Silly Sequencer will only update the console if an error has occured. That is to say, it will not report it's progress on the terminal.
-* **ignore_channel_ten**: If a value of 't', 'T', or True is provided in this position, Silly Sequencer will ignore all instructions on MIDI channel ten. This is useful when the convention of exclusively using channel ten for percussion has been followed. If any other parameter or no parameter is provided Silly Sequencer will process MIDI channel ten normally.
+* **ignore_channel_ten**: If a value of 't', 'T', or True is provided in this position, Silly Sequencer will ignore all instructions on MIDI channel ten. This is useful when the convention of exclusively using channel ten for percussion has been followed. If any other parameter or no parameter is provided Silly Sequencer will process MIDI channel ten normally.  
+
+Thus, the example provided can be recreated with the command:
+```bash
+python Silly_Sequencer.py Samples score.mid Output 0.2 True False
+```
 
 All parameters listed above are positional and must be provided in the order presented above. Should the user wish to use later parameters without using earlier ones a value of 'None' can be passed to indicate to Silly Sequencer that the parameter should be ignored. For example:
 ```bash
@@ -94,12 +99,12 @@ would use the default parameters for sample_directory, score, gain and verbose, 
 * Silly Sequencer will work with mono and stereo samples. It has not been tested with samples that have more than two channels.
 * If the Samples directory provided does not exist, the program will fail. Furthermore if the Samples directory is empty the program will also fail. Finally, the samples directory must contain **EXCLUSIVELY** audio files. The presence of any other type of file will cause failure. As per the limitations of the dependency _SoundFile,_ Silly Sequencer fully supports WAV, FLAC and MAT files and has limited support for OGG files. See the [SoundFile documentation](https://pysoundfile.readthedocs.io/en/latest/#read-write-functions) for more details.
 * This version of Silly Sequencer does not acknowledge _Note Off_ events, nor does it respond to _Note On_ events with a velocity of 0 (which both usually indicate that the note should stop playing). When Silly Sequencer recieves a _Note On_ event with non-zero velocity, it will play the entire sample, stopping only if the end point of the song has been reached.
-* There are a few scenarion where writing the audio files can fail:  
-  * The files are already in use by another program. This could arise if the user was trying to overwrite the output of a previous run of Silly Sequencer after having imported them into their DAW.
-  * Silly Sequencer does not have write access to the specified directory.  
-  
-  In both of these cases, Silly Sequencer will try to perform the write every 30 seconds until it is either successful or the user terminates the process with 'ctrl+c'. This allows the user to rectify the situation without having to restart the processing.
+* There are a few scenarios where writing the audio files can fail:  
+  1. Silly Sequencer does not have permission to write to the output destination.
+  2. Silly Sequencer is trying to write to files that are in use by another program.
+  3. The track names in the MIDI file are not valid filenames for the OS.
 
+  In the first two cases the user will be prompted to rectify the problem and then press enter to resume execution. In the third case the user will be prompted to enter a new filename for the track.
 ---
 
 ## Built With
