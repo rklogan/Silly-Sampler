@@ -51,7 +51,9 @@ if __name__ == "__main__":
     output_directory = 'Output'
     fs = 22050                  
     gain = 0.2
+    ignore_channel_ten = False
 
+    #get command-line arguments
     if len(sys.argv) > 1:
         if sys.argv[1] != 'None':
             sample_directory = sys.argv[1]
@@ -67,6 +69,9 @@ if __name__ == "__main__":
     if len(sys.argv) > 5:
         if sys.argv[5][0] == 'f' or sys.argv[5][0] == 'F':
             VERBOSE = False
+    if len(sys.argv) > 6:
+        if 't' in sys.argv[6] or 'T' in sys.argv[6]:
+            ignore_channel_ten = True
 
     cwd_path = os.getcwd()
     samples_path = join(cwd_path, sample_directory)
@@ -86,7 +91,6 @@ if __name__ == "__main__":
         sys.exit(1)
     elif not os.path.exists(output_path):
         os.mkdir(output_path)
-
 
     score_file = md.MidiFile(score_path, clip=True)
 
@@ -132,6 +136,13 @@ if __name__ == "__main__":
             if VERBOSE and i % 32 == 0 and i != 0:
                 print(str(i) + ' of ' + str(num_events) + ' events processed for track: ' + track.name + '\t\t\t\t' + str(int(100*i/num_events)) + '%')
             tick += track[i].time
+
+            if ignore_channel_ten:
+                if 'channel' in track[i].dict():
+                    if track[i].dict()['channel'] == 10:
+                        i+= 1
+                        continue
+
 
             if track[i].type == 'note_on':
                 if not track[i].note in sample_dict:
