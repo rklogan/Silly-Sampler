@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 Installation instructions can be found [here](https://docs.python.org/3/using/index.html)
 
 #### pip
-While pip is not strictly required to run this project, the installation instructions contained here will use it. References to the dependency's developer's instructions will be included if you do not wish to install pip. Installation instructions can be found [here](https://pip.pypa.io/en/stable/installing/)
+While pip is not strictly required to run this project, the installation instructions contained here will use it. References to the dependencies' developer's instructions will be included if you do not wish to install pip. Installation instructions can be found [here](https://pip.pypa.io/en/stable/installing/)
 
 #### NumPy
 NumPy can be installed using pip as follows:
@@ -36,7 +36,7 @@ pip install librosa
 Alternative installation instructions can be found [here](https://librosa.github.io/librosa/install.html)
 
 #### SoundFile
-SoundFile can read and write sound files. It can be installed with pip as follows:
+SoundFile is used to read and write sound files. It can be installed with pip as follows:
 ```bash
 pip install PySoundFile
 ```
@@ -74,7 +74,7 @@ python Silly_Sequencer.py [sample_directory] [score] [output_directory] [gain] [
 * **output_directory**: The relative path to the directory to which the output audio should be written. Should the directory not exist, it will be created. Should it already contain audio files that match the track names of the MIDI file being process they will be **OVERWRITTEN**. To recreate the example, a value of 'Output' (without quotation marks) could be provided.
 * **gain**: This is the gain factor applied to all the samples. By default it is 0.2. Depending on the MIDI file being processed, and the number of samples that are playing simultaneously this may need to be adjusted to avoid clipping.
 * **verbose**: If a value of 'f', 'F', or 'False' is provided in this position, Silly Sequencer will only update the console if an error has occured. That is to say, it will not report it's progress on the terminal.
-* **ignore_channel_ten**: If a value of 't', 'T', or True is provided in this position, Silly Sequencer will ignore all instructions on MIDI channel ten. This is useful when the convention of exclusively using channel ten for percussion has been followed. If any other parameter or no parameter is provided Silly Sequencer will process MIDI channel ten normally.  
+* **ignore_channel_ten**: If a value of 't', 'T', or 'True' is provided in this position, Silly Sequencer will ignore all instructions on MIDI channel ten. This is useful when the convention of exclusively using channel ten for percussion has been followed. If any other parameter or no parameter is provided Silly Sequencer will process MIDI channel ten normally.  
 
 Thus, the example provided can be recreated with the command:
 ```bash
@@ -90,7 +90,7 @@ would use the default parameters for sample_directory, score, gain and verbose, 
 ### General Notes
 * Silly Sequencer produces rather chaotic music. Sample choice greatly effects the musicality of the output. For instance, in the provided example the gunshot sound effects are not noticeably effected by the pitch shifting and result, for the most part, in destroying the melodic structure (however amusing it might be).
 * Silly Sequencer will automatically select the sample rate for the audio files to be the same as the sample rate of the sample whose file name is first lexicographically. As such, all samples should have the same sample rate to avoid erroneous behaviour.
-* Silly Sequencer will work with mono and stereo samples. It has not been tested with samples that have more than two channels.
+* Silly Sequencer will work with mono and stereo samples. It has not been tested with samples that contain more than two audio channels.
 * If the Samples directory provided does not exist, the program will fail. Furthermore if the Samples directory is empty the program will also fail. Finally, the samples directory must contain **EXCLUSIVELY** audio files. The presence of any other type of file will cause failure. As per the limitations of the dependency _SoundFile,_ Silly Sequencer fully supports WAV, FLAC and MAT files and has limited support for OGG files. See the [SoundFile documentation](https://pysoundfile.readthedocs.io/en/latest/#read-write-functions) for more details.
 * This version of Silly Sequencer does not acknowledge _Note Off_ events, nor does it respond to _Note On_ events with a velocity of 0 (which both usually indicate that the note should stop playing). When Silly Sequencer recieves a _Note On_ event with non-zero velocity, it will play the entire sample, stopping only if the end point of the song has been reached.
 * There are a few scenarios where writing the audio files can fail:  
