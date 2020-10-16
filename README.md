@@ -1,5 +1,5 @@
 # Silly-Sequencer
-Silly Sequencer assigns a random sample to each note of each channel of a MIDI file and outputs the resulting audio file. The samples are pitch shifted to the note specified in the MIDI file. Silly Sequencer is written in Python and is cross-platform.
+Silly Sequencer assigns a random sample to each note of each channel of a MIDI file and outputs the resulting audio file. The samples are pitch shifted to the note specified in the MIDI file. Silly Sequencer is written in Python.
 
 ## Why do this?
 Because we can. (And it's amusing)
