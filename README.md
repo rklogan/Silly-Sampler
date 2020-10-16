@@ -1,5 +1,5 @@
 # Silly-Sequencer
-Silly Sequencer assigns a random sample to each note of each channel of a MIDI file and outputs the resulting audio file. The samples are pitch shifted to the note specified in the MIDI file. Silly Sequencer is written in Python.
+Silly Sequencer assigns a random sample to each note of each channel of a MIDI file and outputs the resulting audio file. The samples are pitch shifted to the note specified in the MIDI file. Silly Sequencer is written in Python3.
 
 ## Why do this?
 Because we can. (And it's amusing)
@@ -12,33 +12,33 @@ These instructions will get you a copy of the project up and running on your loc
 Installation instructions can be found [here](https://docs.python.org/3/using/index.html)
 
 #### pip
-While pip is not strictly required to run this project, the installation instructions contained here will use it. References to the dependencies' developer's instructions will be included if you do not wish to install pip. Installation instructions can be found [here](https://pip.pypa.io/en/stable/installing/)
+While pip is not strictly required to run this project, the installation instructions contained here will use it. References to the dependencies' developer's instructions will be included if you do not wish to install pip. Installation instructions can be found [here](https://pip.pypa.io/en/stable/installing/). Commands in this document use the default alias in BASH; substitute 'pip3' for 'pip' to use the default on Windows shells.
 
 #### NumPy
 NumPy can be installed using pip as follows:
 ```bash
-pip install numpy
+pip3 install numpy
 ```
 Otherwise, consult [this link](https://docs.scipy.org/doc/numpy/user/install.html) for further instructions.
 
 #### Mido
 Mido is a library for working with MIDI messages and ports. It can be installed with pip as follows:
 ```bash
-pip install Mido
+pip3 install Mido
 ```
 Otherwise, you can consult the [Mido documentation](https://mido.readthedocs.io/en/latest/index.html)
 
 #### LibROSA
 LibROSA is a python package for music and audio analysis. It can be installed with pip as follows:
 ```bash
-pip install librosa
+pip3 install librosa
 ```
 Alternative installation instructions can be found [here](https://librosa.github.io/librosa/install.html)
 
 #### SoundFile
 SoundFile is used to read and write sound files. It can be installed with pip as follows:
 ```bash
-pip install PySoundFile
+pip3 install PySoundFile
 ```
 On Linux, you will additionally need to install libsndfile. Depending on your package manager this can be done with:
 ```bash
@@ -78,12 +78,12 @@ python Silly_Sequencer.py [sample_directory] [score] [output_directory] [gain] [
 
 Thus, the example provided can be recreated with the command:
 ```bash
-python Silly_Sequencer.py Samples score.mid Output 0.2 True False
+python3 Silly_Sequencer.py Samples score.mid Output 0.2 True False
 ```
 
 All parameters listed above are positional and must be provided in the order presented above. Should the user wish to use later parameters without using earlier ones a value of 'None' can be passed to indicate to Silly Sequencer that the parameter should be ignored. For example:
 ```bash
-python Silly_Sequencer.py None None new_output_directory
+python3 Silly_Sequencer.py None None new_output_directory
 ```
 would use the default parameters for sample_directory, score, gain and verbose, but would instead write the output values to new_output_directory.
 
